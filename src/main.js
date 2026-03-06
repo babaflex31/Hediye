@@ -11,9 +11,9 @@ class Engine {
         this.introScreen = document.getElementById('intro-screen');
         this.audioInput = document.getElementById('audio-input');
 
-        // Allocation of SharedArrayBuffer for Real-Time State
+        // Allocation of standard ArrayBuffer for State (SharedArrayBuffer blocked by Github Pages COOP policy)
         // Format: [ energy, spectral_centroid, danceability, scene_state_enum, beat_impulse ... ]
-        this.sharedAudioBuffer = new SharedArrayBuffer(20 * Int32Array.BYTES_PER_ELEMENT);
+        this.sharedAudioBuffer = new ArrayBuffer(20 * Int32Array.BYTES_PER_ELEMENT);
         this.sharedAudioState = new Int32Array(this.sharedAudioBuffer);
 
         this.decisionEngine = new DecisionEngine(this.sharedAudioState);
@@ -237,7 +237,7 @@ class Engine {
             this.scene2Timer += delta;
 
             // Artificial decay of energy to zero
-            Atomics.store(this.sharedAudioState, 0, 0);
+            this.sharedAudioState[0] = 0;
 
             // Make the world cold and still over 5 seconds
             const lerpFactor = Math.min(this.scene2Timer / 5.0, 1.0);
@@ -271,8 +271,8 @@ class Engine {
             const centroid = sum > 0 ? weightedSum / sum : 0;
 
             // Write simulated advanced logic to shared audio state
-            Atomics.store(this.sharedAudioState, 0, Math.floor(energy * 100)); // index 0: energy
-            // Atomics.store(this.sharedAudioState, 1, centroid);
+            this.sharedAudioState[0] = Math.floor(energy * 100); // index 0: energy
+            // this.sharedAudioState[1] = centroid;
         }
 
         this.decisionEngine.update(delta);

@@ -27,24 +27,24 @@ export class DecisionEngine {
     }
 
     update(delta) {
-        // 1. Read from SharedArrayBuffer (zero overhead, real-time)
+        // 1. Read from State Buffer (zero overhead, real-time)
         // AudioWorker will write these as Uint32 representations of floats or ints.
-        // For simplicity right now, we simulated ints in the SAB.
-        const rawEnergy = Atomics.load(this.audioState, 0);
-        const isBeat = Atomics.load(this.audioState, 3);
-        const sceneIdx = Atomics.load(this.audioState, 2);
+        // For simplicity right now, we simulated ints in the buffer.
+        const rawEnergy = this.audioState[0];
+        const isBeat = this.audioState[3];
+        const sceneIdx = this.audioState[2];
 
         const energy = rawEnergy / 100.0;
 
         // 2. Logic graph based on Energy & Scene State
         if (energy > 0.8) {
-            if (sceneIdx !== SCENE_STATES.AGGRESSIVE) Atomics.store(this.audioState, 2, SCENE_STATES.AGGRESSIVE);
+            if (sceneIdx !== SCENE_STATES.AGGRESSIVE) this.audioState[2] = SCENE_STATES.AGGRESSIVE;
             this.targetFOV = 100; // Widen camera on high energy
         } else if (energy > 0.4) {
-            if (sceneIdx !== SCENE_STATES.GROOVE) Atomics.store(this.audioState, 2, SCENE_STATES.GROOVE);
+            if (sceneIdx !== SCENE_STATES.GROOVE) this.audioState[2] = SCENE_STATES.GROOVE;
             this.targetFOV = 80;
         } else {
-            if (sceneIdx !== SCENE_STATES.CALM) Atomics.store(this.audioState, 2, SCENE_STATES.CALM);
+            if (sceneIdx !== SCENE_STATES.CALM) this.audioState[2] = SCENE_STATES.CALM;
             this.targetFOV = 60; // Zoom in slightly for calm
         }
 
@@ -57,10 +57,10 @@ export class DecisionEngine {
     }
 
     getEnergy() {
-        return Atomics.load(this.audioState, 0) / 100.0;
+        return this.audioState[0] / 100.0;
     }
 
     getBeatImpulse() {
-        return Atomics.load(this.audioState, 3) / 100.0;
+        return this.audioState[3] / 100.0;
     }
 }
