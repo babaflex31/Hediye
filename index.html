@@ -5,8 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Audio-Reactive Engine</title>
-    <link rel="stylesheet" href="/styles/base.css">
-    <link rel="stylesheet" href="/styles/animations.css">
+    <link rel="stylesheet" href="./styles/base.css">
+    <link rel="stylesheet" href="./styles/animations.css">
 </head>
 
 <body>
@@ -21,12 +21,12 @@
         style="position: absolute; top:50%; left:50%; transform: translate(-50%,-50%); color: red; font-size: 15vw; font-weight: 900; z-index: 51; display: none; text-shadow: -5px 0 cyan, 5px 0 yellow; pointer-events: none; font-family: monospace;">
         06/03/25</div>
     <div id="glitch-overlay"></div>
-    <img id="finish-photo" src="/assets/photos/finish.jpg"
-        onerror="this.onerror=null;this.src='/assets/photos/finish.png';"
+    <img id="finish-photo" src="./assets/photos/finish.jpg"
+        onerror="this.onerror=null;this.src='./assets/photos/finish.png';"
         style="position: absolute; top:0; left:0; width: 100vw; height: 100vh; object-fit: cover; z-index: 50; display: none; pointer-events: none;"
         alt="Finish Photo">
     <div id="video-container">
-        <video id="video-player" src="/assets/videos/clip.mp4" playsinline></video>
+        <video id="video-player" src="./assets/videos/clip.mp4" playsinline></video>
     </div>
     <div id="stream-overlay">
         <div class="stream-header">
@@ -56,7 +56,7 @@
         </div>
     </div>
     <div id="canvas-container"></div>
-    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="./src/main.js"></script>
 </body>
 
 </html>

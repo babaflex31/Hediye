@@ -106,7 +106,7 @@ class Engine {
             await this.bootAudioContext();
 
             console.log("Loading default song...");
-            this.audioEl.src = '/assets/audio/song.mp3';
+            this.audioEl.src = './assets/audio/song.mp3';
 
             try {
                 await this.audioEl.play();
@@ -190,7 +190,7 @@ class Engine {
                     }
 
                     // 3. Trigger song2.mp3
-                    this.audioEl.src = '/assets/audio/song2.mp3';
+                    this.audioEl.src = './assets/audio/song2.mp3';
                     this.audioEl.play().catch(e => console.error("song2.mp3 play failed: ", e));
 
                     // 4. Confetti and Cinematic Text

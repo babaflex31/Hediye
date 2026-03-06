@@ -4,6 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -20,6 +25,7 @@
     "vite-plugin-wasm": "^3.5.0"
   },
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "wasm-pack": "^0.14.0"
   }
 }

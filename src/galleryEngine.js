@@ -24,7 +24,7 @@ export class GalleryEngine {
 
     loadAssets(filenames) {
         filenames.forEach(file => {
-            this.textureLoader.load(`/assets/photos/${file}`, (texture) => {
+            this.textureLoader.load(`./assets/photos/${file}`, (texture) => {
                 texture.colorSpace = THREE.SRGBColorSpace;
                 this.textures.push(texture);
                 console.log(`[Gallery Engine] Loaded ${file}`);
