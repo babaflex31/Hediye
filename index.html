@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audio-Reactive Engine</title>
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/animations.css">
+</head>
+
+<body>
+    <div id="intro-screen">
+        <div class="welcome-container">
+            <h1 class="welcome-text">18 Yaşına Hoşgeldin</h1>
+            <h2 class="dynamic-name"><span id="name-changer">Nuncayımız</span></h2>
+            <p class="click-hint">(Başlatmak İçin Ekrana Tıkla)</p>
+        </div>
+    </div>
+    <div id="date-glitch"
+        style="position: absolute; top:50%; left:50%; transform: translate(-50%,-50%); color: red; font-size: 15vw; font-weight: 900; z-index: 51; display: none; text-shadow: -5px 0 cyan, 5px 0 yellow; pointer-events: none; font-family: monospace;">
+        06/03/25</div>
+    <div id="glitch-overlay"></div>
+    <img id="finish-photo" src="/assets/photos/finish.jpg"
+        onerror="this.onerror=null;this.src='/assets/photos/finish.png';"
+        style="position: absolute; top:0; left:0; width: 100vw; height: 100vh; object-fit: cover; z-index: 50; display: none; pointer-events: none;"
+        alt="Finish Photo">
+    <div id="video-container">
+        <video id="video-player" src="/assets/videos/clip.mp4" playsinline></video>
+    </div>
+    <div id="stream-overlay">
+        <div class="stream-header">
+            <div class="stream-info-left">
+                <div class="avatar-container">
+                    <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/c6bfe8f9-e4d0-4d43-aa9a-e27eddef4f0a-profile_image-150x150.png"
+                        alt="Owl"> <!-- Placeholder Owl -->
+                    <div class="live-badge">LIVE</div>
+                </div>
+                <div class="stream-text">
+                    <h2 class="streamer-name">thetuncay</h2>
+                    <p class="stream-title">SENİ ELLERİM | !dc !baykuş</p>
+                    <div class="stream-tags">
+                        <span>Counter-Strike 2</span>
+                        <span>Turkish</span>
+                        <span>Sohbet</span>
+                        <span>oyun</span>
+                        <span>türk</span>
+                        <span>turkçe</span>
+                        <span>thetuncay</span>
+                    </div>
+                </div>
+            </div>
+            <div class="stream-actions">
+                <div class="view-count">👥 <span>10</span> İzleyici</div>
+            </div>
+        </div>
+    </div>
+    <div id="canvas-container"></div>
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
